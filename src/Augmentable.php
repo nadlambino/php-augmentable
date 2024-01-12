@@ -70,7 +70,7 @@ trait Augmentable
 	 */
 	public function __call(string $method, array $arguments)
 	{
-		if (!isset(self::$augments[$method])) {
+		if (!self::augmented($method)) {
 			throw new BadMethodCallException("Method [$method] does not exist.");
 		}
 
@@ -95,7 +95,7 @@ trait Augmentable
 	 */
 	public static function __callStatic(string $method, array $arguments)
 	{
-		if (!isset(self::$augments[$method])) {
+		if (!self::augmented($method)) {
 			throw new BadMethodCallException("Method [$method] does not exist.");
 		}
 
