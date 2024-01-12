@@ -1,0 +1,18 @@
+{
+    "name": "inspira/augmentable",
+    "description": "Augment PHP class at runtime.",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Inspira\\Augmentable\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Ronald Lambino",
+            "email": "50892397+nadlambino@users.noreply.github.com"
+        }
+    ],
+    "minimum-stability": "dev"
+}
