@@ -37,6 +37,26 @@ trait Augmentable
 	}
 
 	/**
+	 * Deaugment a dynamically added method.
+	 *
+	 * This method removes the specified dynamically added method from the class.
+	 * If no method name is provided, it clears all dynamically added methods.
+	 *
+	 * @param string|null $method The name of the method to deaugment. If null, all methods are cleared.
+	 * @return void
+	 */
+	public static function deaugment(string $method = null): void
+	{
+		if (is_null($method)) {
+			static::$augments = [];
+
+			return;
+		}
+
+		unset(static::$augments[$method]);
+	}
+
+	/**
 	 * Check if a dynamically added method exists.
 	 *
 	 * @param string $method The name of the method.
@@ -102,7 +122,7 @@ trait Augmentable
 		$handler = self::$augments[$method];
 
 		if ($handler instanceof Closure && self::canBeBind($handler)) {
-			return $handler->call(new self(), ...$arguments);
+			return Closure::bind($handler, null, static::class)(...$arguments);
 		}
 
 		return $handler(...$arguments);
