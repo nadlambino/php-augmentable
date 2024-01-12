@@ -7,7 +7,7 @@ The `Augmentable` trait allows for the dynamic addition of methods to a class.
 Install the `Augmentable` trait using composer:
 
 ```bash
-composer require inspira/augmentable-trait
+composer require -s dev inspira/augmentable
 ```
 
 ## Usage
