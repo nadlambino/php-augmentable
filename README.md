@@ -63,3 +63,24 @@ class ExampleClass {
 $dynamicMethods = ExampleClass::augments();
 print_r($dynamicMethods);
 ```
+
+### Deaugment Added Method
+
+```php
+use Inspira\Augmentable\Augmentable;
+
+class ExampleClass {
+    use Augmentable;
+}
+
+// Dynamically add a new method named 'customMethod'
+ExampleClass::augment('customMethod', function () {
+    return 'Custom method implementation';
+});
+
+// Remove the 'customMethod'
+ExampleClass::deaugment('customMethod');
+
+// Remove all methods
+ExampleClass::deaugment();
+```
