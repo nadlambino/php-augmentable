@@ -96,7 +96,7 @@ trait Augmentable
 
 		$handler = self::$augments[$method];
 
-		if ($handler instanceof Closure && $this->canBeBind($handler)) {
+		if ($handler instanceof Closure && $this->bindable($handler)) {
 			return $handler->call($this, ...$arguments);
 		}
 
@@ -121,7 +121,7 @@ trait Augmentable
 
 		$handler = self::$augments[$method];
 
-		if ($handler instanceof Closure && self::canBeBind($handler)) {
+		if ($handler instanceof Closure && self::bindable($handler)) {
 			return Closure::bind($handler, null, static::class)(...$arguments);
 		}
 
@@ -139,7 +139,7 @@ trait Augmentable
 	 *
 	 * @return bool Returns true if the closure can be safely bound, false otherwise.
 	 */
-	protected static function canBeBind(Closure $handler): bool
+	private static function bindable(Closure $handler): bool
 	{
 		try {
 			$reflectionFunction = new ReflectionFunction($handler);
